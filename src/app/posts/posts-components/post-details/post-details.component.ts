@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
-import { PostDataService } from '../../posts-services/post-data.service';
 import { post } from 'src/app/models';
 
 @Component({
@@ -13,20 +12,11 @@ export class PostDetailsComponent implements OnInit {
 
   post: post;
 
-  constructor(private activateRoute: ActivatedRoute,
-              private router: Router,
-              private postService: PostDataService) {
+  constructor(private activateRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.activateRoute.params.subscribe(({id}) => {
-      const state = this.router.getCurrentNavigation()?.extras?.state?.['post'] as post;
-      if (state) {
-        this.post = state
-      } else {
-        this.postService.getPost(id).subscribe(value => this.post = value);
-      }
-    })
+    this.activateRoute.data.subscribe(({data}) => this.post = data)
   }
 
 }

@@ -6,6 +6,7 @@ import { UsersComponent } from './users-components/users/users.component';
 import { UserDataService } from './users-services/user-data.service';
 import { UserComponent } from './users-components/user/user.component';
 import { UserDetailsComponent } from './users-components/user-details/user-details.component';
+import { UserResolveService } from './users-services/resolvers/user-resolve.service';
 
 
 @NgModule({
@@ -18,6 +19,9 @@ import { UserDetailsComponent } from './users-components/user-details/user-detai
     CommonModule,
     UsersRoutingModule,
   ],
-  providers:[UserDataService]
+  providers: [
+    UserDataService,
+    UserResolveService
+  ]
 })
 export class UsersModule { }
